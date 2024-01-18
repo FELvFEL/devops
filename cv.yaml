@@ -1,0 +1,33 @@
+details:
+  first_name: Vladimir
+  last_name: Felinger
+
+  title: Program Engeneer
+
+profile: Personal description.
+
+contact:
+- text: Vovafelinger75@gmail.com
+  url: https://vk.com/vfelv
+  icon: email
+
+technical:
+  - category: Languages
+    items: C#, Java, PHP, JS, Python
+  - category: Frameworks
+    items: Node.js, React.js, Symfony
+
+sections:
+
+- name: Education
+  items:
+  - title: TUSUR
+    subtitle: University
+    location: Tomsk, Russia
+    from:
+      month: 9
+      year: 2021
+    to:
+      month: 6
+      year: 2025
+    description: program engeneer
