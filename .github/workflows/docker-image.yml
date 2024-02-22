@@ -1,0 +1,24 @@
+name: Docker Build and Release
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Build and push Docker image
+      run: |
+        docker-compose build
+        docker-compose push
+      env:
+        DOCKER_CLI_ACI: 1
+        DOCKER_BUILDKIT: 1
