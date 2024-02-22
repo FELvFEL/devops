@@ -26,5 +26,5 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: cv-artifact
-        path: /opt/app/cv.html
+        path: /usr/share/nginx/html/index.html
 
