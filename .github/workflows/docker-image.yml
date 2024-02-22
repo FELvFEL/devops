@@ -22,3 +22,9 @@ jobs:
       env:
         DOCKER_CLI_ACI: 1
         DOCKER_BUILDKIT: 1
+    - name: Archive cv.html
+      uses: actions/upload-artifact@v2
+      with:
+        name: cv-artifact
+        path: /opt/app/cv.html
+
