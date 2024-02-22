@@ -15,16 +15,26 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Build and push Docker image
-      run: |
-        docker-compose build
-        docker-compose push
-      env:
-        DOCKER_CLI_ACI: 1
-        DOCKER_BUILDKIT: 1
+    - name: Build Docker image
+      id: build
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        file: ./Dockerfile
+        push: false
+        tags: ${{ github.event_name == 'push' && github.ref != 'refs/tags/' && github.ref != 'refs/heads/main' && github.ref || 'latest' }}
+
+    - name: Release Docker image
+      if: github.event_name == 'push' && github.ref == 'refs/tags/*'
+      uses: docker/build-push-action@v2
+      with:
+        context: .
+        file: ./Dockerfile
+        push: true
+        tags: ${{ github.ref }}
     - name: Archive cv.html
       uses: actions/upload-artifact@v2
       with:
         name: cv-artifact
-        path: /usr/share/nginx/html/index.html
+        path: /opt/app/cv.html
 
